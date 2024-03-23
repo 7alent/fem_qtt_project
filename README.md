@@ -107,7 +107,7 @@ $$
 
 为方便讨论, 将基函数导数无定义的点处的基函数导数值设为 $0$
 
-弱问题的有限元估计为: 求 $u_h(x){\in}V_h=span\{\phi_1,\phi_2,...,\phi_{N-1}\}$ 满足:
+弱问题的有限元估计为: 求 $u_h(x){\in}V_h=span[\phi_1,\phi_2,...,\phi_{N-1}]$ 满足:
 
 $$
 \int^1_{-1}u_h^{'}(x)v_h^{'}(x)dx+\int^1_{-1}q(x)u_h(x)v_h(x)dx=\lambda\int^1_{-1}u_h(x)v_h(x)dx,{\forall}v_h{\in}V_h
