@@ -142,25 +142,25 @@ $$
 (1) $A$ 的主对角元, 对应代码中 **a_diag** :
 
 $$
-a_{ii}=\frac{1}{h}(2+\frac{1}{h}(\int^{-1+ih}_{-1+(i-1)h}q(x)(x+1-(i-1)h)^2dx+\int^{-1+(i+1)h}_{-1+ih}q(x)(x+1-(i+1)h)^2dx))
+a_{ii}=\frac{1}{h}\left[2+\frac{1}{h}\left[\int_{-1+(i-1)h}^{-1+ih}q(x)(x+1-(i-1)h)^2dx+\int_{-1+ih}^{-1+(i+1)h}q(x)(x+1-(i+1)h)^2dx\right]\right]
 $$
 
 (2) $A$ 的上次对角元, 对应代码中 **a_subdiag**:
 
 $$
-a_{i,i+1}=-\frac{1}{h}(1+\frac{1}{h}\int^{-1+(i+1)h}_{-1+ih}q(x)(x+1-(i+1)h)(x+1-ih)dx)
+a_{i,i+1}=-\frac{1}{h}\left[1+\frac{1}{h}\int^{-1+(i+1)h}_{-1+ih}q(x)(x+1-(i+1)h)(x+1-ih)dx\right]
 $$
 
 (3) $B$ 的主对角元, 对应代码中 **b_diag**:
 
 $$
-b_{ii}=\frac{1}{h^2}(\int^{-1+ih}_{-1+(i-1)h}[x+1-(i-1)h]^2dx+\int^{-1+(i+1)h}_{-1+ih}[x+1-(i+1)h]^2dx)
+b_{ii}=\frac{1}{h^2}\left[\int_{-1+(i-1)h}^{-1+ih}(x+1-(i-1)h)^2dx+\int_{-1+ih}^{-1+(i+1)h}(x+1-(i+1)h)^2dx\right]
 $$
 
 (4) $B$ 的上次对角元, 对应代码中 **b_subdiag**:
 
 $$
-b_{i,i+1}=-\frac{1}{h^2}\int^{-1+(i+1)h}_{-1+ih}[x+1-(i+1)h](x+1-ih)dx
+b_{i,i+1}=-\frac{1}{h^2}\int_{-1+ih}^{-1+(i+1)h}(x+1-(i+1)h)(x+1-ih)dx
 $$
 
 本说明更新时间为2024年3月23日 <br/>
