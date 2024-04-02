@@ -3,40 +3,141 @@
 % u(a)=0; u(b)=0
 % 求(按模)最小特征值对应的解函数
 
-% 求 q=cos(10x) 时 N=2^5~2^9 的解
+% ------------------探究 U_err 与 k 的关系(k = 2^4 ~ 2^8)-------------------
+% 参数初始化
 syms x
-k = 10;
-q = cos(k*x);
-a = -1;
+N = 2^11;
+a= -1;
 b = 1;
-normalize_by = "H1";
-lambda_vec = 1:5;
-U_mat = zeros(2^9+1, 5);
-time_vec = zeros(5, 1);
+normalize_by = "L2";
 
-% 求解并绘制解函数图象
-for n = 1:5
-    tic;
-    [U_mat(1:2^(n+4)+1, n), lambda_vec(n)] = fem(x, q, 2^(n+4), a, b, normalize_by);
-    time_vec(n) = time_vec(n)+toc;
+% 计算(固定 N 调整 k)
+m = 5;
+U_mat_1 = zeros(N+1, m);
+Uerr_mat_1 = zeros(N+1, m);
+Ud1_mat_1 = zeros(N+1, m);
+Ud2_mat_1 = zeros(N+1, m);
+qU_mat_1 = zeros(N+1, m);
+lambda_vec_1 = 1:m;
+for k = 1:m
+    [U_mat_1(:, k), lambda_vec_1(k), ~, ~, ~, ~, Ud1_mat_1(:, k), ...
+        Ud2_mat_1(:, k), qU_mat_1(:, k), ~, ~, Uerr_mat_1(:, k)] = ...
+        fem(x, cos(2^(k+3)*x), N, a, b, normalize_by);
+end
+
+% 解函数与 cos(pi*x/2) 的图象
+for k = 1:5
+    plot(linspace(a, b, N+1), U_mat_1(:, k), "LineWidth", 0.8)
     hold on
 end
+plot(linspace(a, b, N+1), cos(pi*linspace(a, b, N+1)/2), "LineWidth", 0.8)
+set(gca,"FontSize", 16)
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of $cos(\frac{{\pi}}{2}x)$ and $u(x)$ when $k = 2^4\sim2^8$", "FontSize", 20, "Interpreter", "latex")
+legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "$cos(\frac{{\pi}}{2}x)$", "Interpreter", "latex")
 hold off
-legend({'2^5', '2^6', '2^7', '2^8', '2^9'})
 
-% 时间-N折线图
-plot(2.^(5:9), time_vec)
+% 比较不同 k 下 U_err 的波动性
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 1), "LineWidth", 1)
+set(gca,'FontSize', 16)
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 16$", "FontSize", 20, "Interpreter", "latex")
 
-% 特征值误差-h折线图
-plot(2./2.^(5:9), abs(lambda_vec-lambda_vec(5)))
-xlabel("h")
-ylabel("Error of Lambda")
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 2), "LineWidth", 1)
+set(gca,'FontSize', 16)
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 32$", "FontSize", 20, "Interpreter", "latex")
 
-% 解函数H1模误差-h折线图
-solution_err_vec = zeros(5, 1);
-for n = 1:4
-    solution_err_vec(n) = fem_norm(U_mat(1:2^(n+4)+1, n), U_mat(1:2^9+1, 5), "H1");
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 3), "LineWidth", 1)
+set(gca,'FontSize', 16)
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 64$", "FontSize", 20, "Interpreter", "latex")
+
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 4), "LineWidth", 1)
+set(gca,'FontSize', 16)
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 128$", "FontSize", 20, "Interpreter", "latex")
+
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 5), "LineWidth", 1)
+set(gca,'FontSize', 16)
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 256$", "FontSize", 20, "Interpreter", "latex")
+
+% 解函数一阶导数的图象
+for k = 1:5
+    plot(linspace(a, b, N+1), Ud1_mat_1(:, k), "LineWidth", 0.8)
+    hold on
 end
-plot((2./2.^(5:9)).^2, solution_err_vec)
-xlabel("h^2")
-ylabel("Error of Solution")
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of and $u^\prime(x)$ when $k = 2^4\sim2^8$", "FontSize", 20, "Interpreter", "latex")
+legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "Interpreter", "latex")
+hold off
+
+% 解函数二阶导数的图象
+for k = 1:5
+    plot(linspace(a, b, N+1), Ud2_mat_1(:, k), "LineWidth", 0.8)
+    hold on
+end
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of and $u^{\prime\prime}(x)$ when $k = 2^4\sim2^8$", "FontSize", 20, "Interpreter", "latex")
+legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "Interpreter", "latex")
+hold off
+
+% ------------------探究 N 对 U_err 的影响(N = 2^5 ~ 2^11)------------------
+
+% 参数初始化
+syms x
+k = 16;
+a= -1;
+b = 1;
+normalize_by = "L2";
+
+% 计算(固定 k 调整 N)
+m = 5;
+U_mat_2 = zeros(2^11+1, m);
+Uerr_mat_2 = zeros(2^11+1, m);
+Ud1_mat_2 = zeros(2^11+1, m);
+Ud2_mat_2 = zeros(2^11+1, m);
+qU_mat_2 = zeros(2^11+1, m);
+lambda_vec_2 = 1:m;
+for j = 1:m
+    n_j = 1:2^(j+6)+1;
+    [U_mat_2(n_j, j), lambda_vec_2(j), ~, ~, ~, ~, Ud2_mat_2(n_j, j), ...
+        Ud2_mat_2(n_j, j), qU_mat_2(n_j, j), ~, ~, Uerr_mat_2(n_j, j)] = ...
+        fem(x, cos(k*x), 2^(j+6), a, b, normalize_by);
+end
+
+% 解函数与 cos(pi*x/2) 的图象
+for j = 1:m
+    n_j = 1:2^(j+6)+1;
+    plot(linspace(a, b, 2^(j+6)+1), U_mat_2(n_j, j), "LineWidth", 0.8)
+    hold on
+end
+plot(linspace(a, b, 2^11+1), cos(pi*linspace(a, b, 2^11+1)/2), "LineWidth", 0.8)
+set(gca,"FontSize", 16)
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of $cos(\frac{{\pi}}{2}x)$ and $u(x)$ when $k = 2^4\sim2^8$", "FontSize", 20, "Interpreter", "latex")
+legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "$cos(\frac{{\pi}}{2}x)$", "Interpreter", "latex")
+hold off
+
+% 比较不同 N 下 U_err 的波动性
+for j = 1:m
+    n_j = 1:2^(j+6)+1;
+    plot(linspace(a, b, 2^(j+6)+1), Uerr_mat_2(n_j, j))
+    hold on
+end
+set(gca,'FontSize', 16);
+xlabel("X", "FontSize", 16)
+ylabel("Y", "FontSize", 16)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 16$, $N = 2^7\sim2^{11}$", "FontSize", 20, "Interpreter", "latex")
+legend("$N = 128$", "$N = 256$", "$N = 512$", "$N = 1024$", "$N = 2048$", "Interpreter", "latex")
+hold off
