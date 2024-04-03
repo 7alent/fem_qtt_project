@@ -27,68 +27,82 @@ end
 
 % 解函数与 cos(pi*x/2) 的图象
 for k = 1:5
-    plot(linspace(a, b, N+1), U_mat_1(:, k), "LineWidth", 0.8)
+    plot(linspace(a, b, N+1), U_mat_1(:, k), "LineWidth", 1.5)
     hold on
 end
-plot(linspace(a, b, N+1), cos(pi*linspace(a, b, N+1)/2), "LineWidth", 0.8)
-set(gca,"FontSize", 16)
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of $cos(\frac{{\pi}}{2}x)$ and $u(x)$ when $k = 2^4\sim2^8$", "FontSize", 20, "Interpreter", "latex")
-legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "$cos(\frac{{\pi}}{2}x)$", "Interpreter", "latex")
+plot(linspace(a, b, N+1), cos(pi*linspace(a, b, N+1)/2), "LineWidth", 1.5)
+set(gca,"FontSize", 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of $cos(\frac{{\pi}}{2}x)$ and $u(x)$ when $k = 2^4\sim2^8, N = 2^{11}$", "FontSize", 24, "Interpreter", "latex")
+legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "$cos(\frac{{\pi}}{2}x)$", "FontSize", 20, "Interpreter", "latex")
 hold off
 
 % 比较不同 k 下 U_err 的波动性
-plot(linspace(a, b, N+1), Uerr_mat_1(:, 1), "LineWidth", 1)
-set(gca,'FontSize', 16)
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 16$", "FontSize", 20, "Interpreter", "latex")
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 1), "LineWidth", 1.5)
+set(gca,'FontSize', 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 16, N = 2^{11}$", "FontSize", 24, "Interpreter", "latex")
 
-plot(linspace(a, b, N+1), Uerr_mat_1(:, 2), "LineWidth", 1)
-set(gca,'FontSize', 16)
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 32$", "FontSize", 20, "Interpreter", "latex")
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 2), "LineWidth", 1.5)
+set(gca,'FontSize', 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 32, N = 2^{11}$", "FontSize", 24, "Interpreter", "latex")
 
-plot(linspace(a, b, N+1), Uerr_mat_1(:, 3), "LineWidth", 1)
-set(gca,'FontSize', 16)
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 64$", "FontSize", 20, "Interpreter", "latex")
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 3), "LineWidth", 1.5)
+set(gca,'FontSize', 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 64, N = 2^{11}$", "FontSize", 24, "Interpreter", "latex")
 
-plot(linspace(a, b, N+1), Uerr_mat_1(:, 4), "LineWidth", 1)
-set(gca,'FontSize', 16)
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 128$", "FontSize", 20, "Interpreter", "latex")
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 4), "LineWidth", 1.5)
+set(gca,'FontSize', 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 128, N = 2^{11}$", "FontSize", 24, "Interpreter", "latex")
 
-plot(linspace(a, b, N+1), Uerr_mat_1(:, 5), "LineWidth", 1)
-set(gca,'FontSize', 16)
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 256$", "FontSize", 20, "Interpreter", "latex")
+plot(linspace(a, b, N+1), Uerr_mat_1(:, 5), "LineWidth", 1.5)
+set(gca,'FontSize', 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 256, N = 2^{11}$", "FontSize", 24, "Interpreter", "latex")
 
 % 解函数一阶导数的图象
 for k = 1:5
-    plot(linspace(a, b, N+1), Ud1_mat_1(:, k), "LineWidth", 0.8)
+    plot(linspace(a, b, N+1), Ud1_mat_1(:, k), "LineWidth", 1.5)
     hold on
 end
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of and $u^\prime(x)$ when $k = 2^4\sim2^8$", "FontSize", 20, "Interpreter", "latex")
-legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "Interpreter", "latex")
+set(gca,'FontSize', 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of and $u^\prime(x)$ when $k = 2^4\sim2^8, N = 2^{11}$", "FontSize", 24, "Interpreter", "latex")
+legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "FontSize", 20, "Interpreter", "latex")
 hold off
 
 % 解函数二阶导数的图象
 for k = 1:5
-    plot(linspace(a, b, N+1), Ud2_mat_1(:, k), "LineWidth", 0.8)
+    plot(linspace(a, b, N+1), Ud2_mat_1(:, k), "LineWidth", 1.5)
     hold on
 end
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of and $u^{\prime\prime}(x)$ when $k = 2^4\sim2^8$", "FontSize", 20, "Interpreter", "latex")
-legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "Interpreter", "latex")
+set(gca,'FontSize', 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of and $u^{\prime\prime}(x)$ when $k = 2^4\sim2^8, N = 2^{11}$", "FontSize", 24, "Interpreter", "latex")
+legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "FontSize", 20, "Interpreter", "latex")
+hold off
+
+% cos(kx)u 的图象
+for k = 1:5
+    plot(linspace(a, b, N+1), qU_mat_1(:, k), "LineWidth", 1.5)
+    hold on
+end
+set(gca,'FontSize', 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of and $cos(kx)u(x)$ when $k = 2^4\sim2^8, N = 2^{11}$", "FontSize", 24, "Interpreter", "latex")
+legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "FontSize", 20, "Interpreter", "latex")
 hold off
 
 % ------------------探究 N 对 U_err 的影响(N = 2^5 ~ 2^11)------------------
@@ -118,26 +132,26 @@ end
 % 解函数与 cos(pi*x/2) 的图象
 for j = 1:m
     n_j = 1:2^(j+6)+1;
-    plot(linspace(a, b, 2^(j+6)+1), U_mat_2(n_j, j), "LineWidth", 0.8)
+    plot(linspace(a, b, 2^(j+6)+1), U_mat_2(n_j, j), "LineWidth", 1.5)
     hold on
 end
-plot(linspace(a, b, 2^11+1), cos(pi*linspace(a, b, 2^11+1)/2), "LineWidth", 0.8)
-set(gca,"FontSize", 16)
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of $cos(\frac{{\pi}}{2}x)$ and $u(x)$ when $k = 2^4\sim2^8$", "FontSize", 20, "Interpreter", "latex")
-legend("$k = 16$", "$k = 32$", "$k = 64$", "$k = 128$", "$k = 256$", "$cos(\frac{{\pi}}{2}x)$", "Interpreter", "latex")
+plot(linspace(a, b, 2^11+1), cos(pi*linspace(a, b, 2^11+1)/2), "LineWidth", 1.5)
+set(gca,"FontSize", 18)
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of $cos(\frac{{\pi}}{2}x)$ and $u(x)$ when $N = 2^7\sim2^{11}, k = 16$", "FontSize", 24, "Interpreter", "latex")
+legend("$N = 128$", "$N = 256$", "$N = 512$", "$N = 1024$", "$N = 2048$", "$cos(\frac{{\pi}}{2}x)$", "FontSize", 20, "Interpreter", "latex")
 hold off
 
 % 比较不同 N 下 U_err 的波动性
 for j = 1:m
     n_j = 1:2^(j+6)+1;
-    plot(linspace(a, b, 2^(j+6)+1), Uerr_mat_2(n_j, j))
+    plot(linspace(a, b, 2^(j+6)+1), Uerr_mat_2(n_j, j), "LineWidth", 1.5)
     hold on
 end
-set(gca,'FontSize', 16);
-xlabel("X", "FontSize", 16)
-ylabel("Y", "FontSize", 16)
-title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $k = 16$, $N = 2^7\sim2^{11}$", "FontSize", 20, "Interpreter", "latex")
-legend("$N = 128$", "$N = 256$", "$N = 512$", "$N = 1024$", "$N = 2048$", "Interpreter", "latex")
+set(gca,'FontSize', 18);
+xlabel("X", "FontSize", 20)
+ylabel("Y", "FontSize", 20)
+title("Plot of $u(x)-cos(\frac{{\pi}}{2}x)$ when $N = 2^7\sim2^{11}, k = 16$", "FontSize", 24, "Interpreter", "latex")
+legend("$N = 128$", "$N = 256$", "$N = 512$", "$N = 1024$", "$N = 2048$", "FontSize", 20, "Interpreter", "latex")
 hold off
