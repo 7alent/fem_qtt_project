@@ -9,7 +9,7 @@
 % (暂不支持的参数: P, T, P_b, T_b, 积分仅涉及一阶导数)
 % (暂不支持采用位于不同空间的试探与测试函数, 不支持其它边界条件)
 
-function [U, lambda, L, R, A, B, Ud1, Ud2, qU, V, D, Uerr] = fem(x, q, N, a, b, normalize_by)
+function [U, lambda, L, R, A1U, A2U, Uerr] = fem(x, q, N, a, b, normalize_by)
     
     % 初始化变量及信息矩阵
     h = (b-a)/N;
@@ -77,10 +77,10 @@ function [U, lambda, L, R, A, B, Ud1, Ud2, qU, V, D, Uerr] = fem(x, q, N, a, b, 
     B = B(2:N_m-1, 2:N_m-1);
     
     % 求解特征值问题
-    %[U, lambda] = eigs(A, B, 1, 'smallestreal');
-    [V, D] = eig(full(B)\full(A));
-    [lambda, I] = min(diag(D));
-    U = V(:, I);
+    [U, lambda] = eigs(A, B, 1, 'smallestabs');
+%     [V, D] = eig(full(B)\full(A));
+%     [lambda, I] = min(diag(D));
+%     U = V(:, I);
     
     % 确定特征向量符号
     % -U与U均可作为特征向量
@@ -90,17 +90,13 @@ function [U, lambda, L, R, A, B, Ud1, Ud2, qU, V, D, Uerr] = fem(x, q, N, a, b, 
     end
 
     % 计算部分输出变量
-    L = A*U;
-    R = lambda*B*U;
-    Ud2 = A_1*U; % u的二阶导数
-    Ud2 = [0; Ud2; 0];
-    qU = A_2*U; % u与q的乘积
-    qU = [0; qU; 0];
+    L = [0; A*U; 0]; % 对应方程左端
+    R = [0; lambda*B*U; 0]; % 对应方程右端
+    A1U = A_1*U; % 对应-u''(x)
+    A1U = [0; A1U; 0];
+    A2U = A_2*U; % 对应cos(kx)u(x)
+    A2U = [0; A2U; 0];
     U = [0; U; 0];
-    Ud1 = U; % (近似)一阶导数
-    Ud1(2:N_m-1) = (Ud1(3:N_m)-Ud1(1:N_m-2))/(2*h); % 中心差分
-    Ud1(1) = Ud1(2);
-    Ud1(N_m) = Ud1(N_m-1);
 
     % 归一化返回解函数
     U = U/fem_norm(U, 0.*U, normalize_by);
