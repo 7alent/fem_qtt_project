@@ -125,14 +125,14 @@ title('Plot of $A_1U, A_2U, AU, {\lambda}BU$ when $k = 32, N = 2^{11}$', 'FontSi
 legend('$A_1U$', '$A_2U$', '$AU$', '${\lambda}BU$', 'FontSize', 20, 'Interpreter', 'latex')
 hold off
 
-%  A*U 与 lambda*B*U 的误差绝对值(k = 16, N = 2^11)
+%  A*U 与 lambda*B*U 的差(k = 16, N = 2^11)
 plot(linspace(a, b, 2^11+1), L_mat_1(:, 1)-R_mat_1(:, 1))
 set(gca, 'FontSize', 18)
 xlabel('X', 'FontSize', 20)
 ylabel('$AU-{\lambda}BU$', 'FontSize', 20, 'Interpreter', 'latex')
 title('Plot of $AU-{\lambda}BU$ when $k = 16, N = 2^{11}$', 'FontSize', 24, 'Interpreter', 'latex')
 
-%  A*U 与 lambda*B*U 的误差绝对值(k = 32, N = 2^11)
+%  A*U 与 lambda*B*U 的差(k = 32, N = 2^11)
 plot(linspace(a, b, 2^11+1), L_mat_1(:, 2)-R_mat_1(:, 2))
 set(gca, 'FontSize', 18)
 xlabel('X', 'FontSize', 20)
