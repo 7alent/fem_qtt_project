@@ -139,7 +139,7 @@ ylabel('$AU-{\lambda}BU$', 'FontSize', 20, 'Interpreter', 'latex')
 title('Plot of $AU-{\lambda}BU$ when $k = 32, N = 2^{11}$', 'FontSize', 24, 'Interpreter', 'latex')
 
 
-% ------------------探究 N 对 u_err 的影响(N = 2^7 ~ 2^11)------------------
+% ------------------探究 N 对 u_err 的影响(N = 2^3 ~ 2^11)------------------
 
 % 参数初始化
 syms x
@@ -173,7 +173,7 @@ plot(linspace(a, b, 2^(m+n)+1), cos(pi*linspace(a, b, 2^(m+n)+1)/2), 'LineWidth'
 set(gca, 'FontSize', 18)
 xlabel('X', 'FontSize', 20)
 ylabel('Y', 'FontSize', 20)
-title(['Plot of $cos(\frac{{\pi}}{2}x)$ and $u_h(x)$ when $N = 2^{', num2str(1+n), '}\sim2^{', num2str(m+n), '}, k = 16$'], "FontSize", 24, "Interpreter", "latex")
+title(['Plot of $cos(\frac{{\pi}}{2}x)$ and $u_h(x)$ when $N = 2^{', num2str(1+n), '}\sim2^{', num2str(m+n), '}, k = ', num2str(k), '$'], "FontSize", 24, "Interpreter", "latex")
 legend_cell = cell(1, m+1);
 for j = 1:m
     legend_cell(1, j) = {['$N = 2^{', num2str(j+n), '}$']};
@@ -191,7 +191,7 @@ end
 set(gca, 'FontSize', 18);
 xlabel('X', 'FontSize', 20)
 ylabel('Y', 'FontSize', 20)
-title(['Plot of $u_h(x)-cos(\frac{{\pi}}{2}x)$ when $N = 2^{', num2str(1+n), '}\sim2^{', num2str(m+n), '}, k = 16$'], "FontSize", 24, "Interpreter", "latex")
+title(['Plot of $u_h(x)-cos(\frac{{\pi}}{2}x)$ when $N = 2^{', num2str(1+n), '}\sim2^{', num2str(m+n), '}, k = ', num2str(k),'$'], "FontSize", 24, "Interpreter", "latex")
 legend_cell = cell(1, m);
 for j = 1:m
     legend_cell(1, j) = {['$N = 2^{', num2str(j+n), '}$']};
@@ -210,9 +210,9 @@ hold on
 plot(log((b-a)./2.^((1:m-1)+n)), 2*log((b-a)./2.^((1:m-1)+n))-5, 'LineWidth', 1.5)
 set(gca, 'FontSize', 18);
 xlabel('$log(h)$', 'FontSize', 20, 'Interpreter', 'latex')
-ylabel('$log({\Vert}u(x)-u(x)\Vert_{L^2})$', 'FontSize', 20, 'Interpreter', 'latex')
-title('Plot of $log({\Vert}u_h(x)-\widetilde{u}(x)\Vert_{L^2})$ when $log(h)$ changes ($k = 16$)', 'FontSize', 24, 'Interpreter', 'latex')
-text(log((b-a)/2^(m-1+n)), log(u_L2_err_2(1))-.5, '$\widetilde{u}(x)$ is the $u_h(x)$ when $N = 2^{11}, k = 16$', 'FontSize', 20, 'Interpreter', 'latex')
+ylabel('$log({\Vert}u(x)-u(x)\Vert_{L_2})$', 'FontSize', 20, 'Interpreter', 'latex')
+title('Plot of $log({\Vert}u_h(x)-\widetilde{u}(x)\Vert_{L_2})$ when $log(h)$ changes ($k = 16$)', 'FontSize', 24, 'Interpreter', 'latex')
+text(log((b-a)/2^(m-1+n)), log(u_L2_err_2(1))-.5, ['$\widetilde{u}(x)$ is the $u_h(x)$ when $N = 2^{11}, k = ', num2str(k), '$'], 'FontSize', 20, 'Interpreter', 'latex')
 text(log((b-a)/2^(m-1+n)), log(u_L2_err_2(1))-2, 'Slope of the straight line is $2$', 'FontSize', 20, 'Interpreter', 'latex')
 hold off
 
@@ -227,8 +227,8 @@ plot(log((b-a)./2.^((1:m-1)+n)), 2*log((b-a)./2.^((1:m-1)+n)), "LineWidth", 1.5)
 set(gca,'FontSize', 18);
 xlabel('$log(h)$', 'FontSize', 20, 'Interpreter', 'latex')
 ylabel('$log(\vert\lambda-\widetilde{\lambda}\vert)$', 'FontSize', 20, 'Interpreter', 'latex')
-title('Plot of $log(\vert\lambda-\widetilde{\lambda}\vert)$ when $log(h)$ changes ($k = 16$)', 'FontSize', 24, 'Interpreter', 'latex')
-text(log((b-a)/2^(m-1+n)), log(u_L2_err_2(1))+1, '$\widetilde{\lambda}$ is the $\lambda$ when $N = 2^{11}, k = 16$', 'FontSize', 20, 'Interpreter', 'latex')
+title(['Plot of $log(\vert\lambda-\widetilde{\lambda}\vert)$ when $log(h)$ changes ($k = ', num2str(k), '$)'], 'FontSize', 24, 'Interpreter', 'latex')
+text(log((b-a)/2^(m-1+n)), log(u_L2_err_2(1))+1, ['$\widetilde{\lambda}$ is the $\lambda$ when $N = 2^{11}, k = ', num2str(k), '$'], 'FontSize', 20, 'Interpreter', 'latex')
 text(log((b-a)/2^(m-1+n)), log(u_L2_err_2(1)), 'Slope of the straight line is $2$', 'FontSize', 20, 'Interpreter', 'latex')
 hold off
 
