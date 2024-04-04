@@ -1,6 +1,7 @@
 % 基于有限元方法求解一维二阶椭圆型微分方程特征值问题(狄利克雷边界)
-% -u''(x)+p(x)u'(x)+q(x)u(x)+r(x)=lambda*u(x), a<=x<=b
+% -u''(x)+cos(kx)u(x)=lambda*u(x), a<=x<=b
 % u(a)=0; u(b)=0
+% k>0 为参数
 % 求(按模)最小特征值对应的解函数
 
 % ------------------探究 u_err 与 k 的关系(k = 2^4 ~ 2^8)-------------------
@@ -231,4 +232,3 @@ title(['Plot of $log(\vert\lambda-\widetilde{\lambda}\vert)$ when $log(h)$ chang
 text(log((b-a)/2^(m-1+n)), log(u_L2_err_2(1))+1, ['$\widetilde{\lambda}$ is the $\lambda$ when $N = 2^{11}, k = ', num2str(k), '$'], 'FontSize', 20, 'Interpreter', 'latex')
 text(log((b-a)/2^(m-1+n)), log(u_L2_err_2(1)), 'Slope of the straight line is $2$', 'FontSize', 20, 'Interpreter', 'latex')
 hold off
-
