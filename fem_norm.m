@@ -31,7 +31,7 @@ function output = fem_norm(W, V, norm_type)
     N_m = size(U, 1);
     h = 2/(N_m-1);
     
-    % 基于高斯积分的方法(H1模代码待修改: 先将基函数化为标准区间[-1,1]再对新自变量求导并乘上jacobi阵)
+    % 基于高斯积分的方法
     gauss_point = [-sqrt(5+2*sqrt(10/7))/3; -sqrt(5-2*sqrt(10/7))/3; 0; ...
         sqrt(5-2*sqrt(10/7))/3; sqrt(5+2*sqrt(10/7))/3];
     weight = [(322-13*sqrt(70))/900; (322+13*sqrt(70))/900; 128/225; ...
@@ -41,7 +41,7 @@ function output = fem_norm(W, V, norm_type)
     slope = (U(index+1)-U(index))/h; % 高斯点所在单元的解函数斜率
     U_gauss = (gauss_point-left_node).*slope+U(index); % 解函数在高斯点处的值
     output = dot(weight, U_gauss.^2);
-    if norm_type == 'H1'
+    if norm_type == 'H1' % (H1模代码待修改: 先将基函数化为标准区间[-1,1]再对新自变量求导并乘上jacobi阵)
         U_d = U; % (近似)一阶导数
         U_d(2:N_m-1) = (U_d(3:N_m)-U_d(1:N_m-2))/(2*h);
         U_d(1) = U_d(2);
