@@ -8,7 +8,7 @@
 
 $$
 \begin{cases}
--u^{''}(x)+cos(kx)u(x)={\lambda}u(x),\,\,x\in[-1,1]\\
+-u^{''}(x)+cos(kx)u(x)={\lambda}u(x),x\in[-1,1]\\
 u(-1)=u(1)=0
 \end{cases}
 $$
