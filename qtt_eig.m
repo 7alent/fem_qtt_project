@@ -55,7 +55,7 @@ function [x, lambda, t] = qtt_eig(A, B, m, eps, tol)
     C = triu(C)+triu(C, 1)';
     
     % Precondition
-    C = C+m*eye(2^d);
+    C = C+m*speye(2^d);
     try
         chol(C);
     catch
@@ -65,7 +65,7 @@ function [x, lambda, t] = qtt_eig(A, B, m, eps, tol)
     % DMRG
     C_ttm = tt_matrix(tt_qfromfull(full(C), 2, d, eps, 2));
     tic;
-    [x_d, lambda(1), ~] = dmrg_eig(C_ttm, tol);
+    [x_d, lambda(1), ~] = dmrg_eig(C_ttm, tol, 'numblocks', 2, 'nswp', 20);
     t(1) = t(1)+toc;
     x_d = full(x_d);
     x_d = (L')\x_d;
