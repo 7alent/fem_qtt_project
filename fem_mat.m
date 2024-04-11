@@ -50,7 +50,7 @@ function [A, B] = fem_mat(x, q, N, a, b)
         end
         S_A = zeros(N_lb_trial, N_lb_test); % 等号左侧单元刚度矩阵
         S_B = zeros(N_lb_trial, N_lb_test); % 等号右侧单元刚度矩阵
-        for alpha = 1:N_lb_trial
+        for alpha = 1:N_lb_trial % 局部节点试探基函数个数
             for beta = 1:N_lb_test % 局部节点测试基函数个数
                 phi = nf.(['f', num2str(alpha)]); % 局部试探基函数
                 phi_d = nf.(['f', num2str(alpha), 'd']); % 局部试探基函数导数
