@@ -8,7 +8,7 @@
 
 $$
 \begin{cases}
--u^{''}(x)+cos(kx)u(x)={\lambda}u(x),x\in[-1,1]\\
+-u^{''}(x)+cos(kx)u(x)={\lambda}u(x), x\in[-1,1]\\
 u(-1)=u(1)=0
 \end{cases}
 $$
@@ -16,7 +16,7 @@ $$
 记 $q(x)=cos(kx)$ , 则原问题弱形式为: 求 $u{\in}H^1_0(-1,1)$ 满足
 
 $$
-\int^1_{-1}u^{'}(x)v^{'}(x)dx+\int^1_{-1}q(x)u(x)v(x)dx=\lambda\int^1_{-1}u(x)v(x)dx,\,\,{\forall}v(x){\in}H^1_0(-1,1)
+\int^1_{-1}u^{'}(x)v^{'}(x)dx+\int^1_{-1}q(x)u(x)v(x)dx=\lambda\int^1_{-1}u(x)v(x)dx, {\forall}v(x){\in}H^1_0(-1,1)
 $$
 
 将 $[-1,1]$ 均匀划分为 $N$ 个子区间, 子区间长为 $h=\frac{2}{N}$ , 区间端点分别为 $x_0,x_1,...,x_N$ 且 $x_i=-1+ih$ , 构造对应于 $x_i$ 的节点基函数:
